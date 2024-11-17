@@ -15,7 +15,7 @@ namespace ThreePhaseLibrary
         }
 
         public double Mass { get; }
-        public Vector Speed { get; private set; }
+        public Vector Speed { get; set; }
         public Vector Acceleration { get; private set; }
         public Vector Coordinate { get; set; }
 

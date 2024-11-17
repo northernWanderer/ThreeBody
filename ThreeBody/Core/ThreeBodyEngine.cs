@@ -13,6 +13,8 @@ namespace ThreePhaseLibrary
     {
         private ObservableCollection<MassiveBody> bodys;
         private double dt;
+        MassiveBody _maxMass;
+        private MassiveBody _minSpeed;
         private int _wight;
         private int _height;
 
@@ -26,11 +28,17 @@ namespace ThreePhaseLibrary
         public int Height { get => _height; set => SetProperty(ref _height, value); }
         public void Run()
         {
-            MassiveBody lessSpeed = Bodys.OrderBy(m => m.Mass).FirstOrDefault();
+            Vector vindowHalfSize = new Vector(Wight / 2, Height / 2);
+            _maxMass = Bodys.OrderByDescending(m => m.Mass).FirstOrDefault();
+            _minSpeed = Bodys.OrderBy(m => Vector.Module(m.Speed)).FirstOrDefault();
+            foreach (var body in Bodys)
+            {
+                body.Coordinate = body.Coordinate - _maxMass.Coordinate + vindowHalfSize;
+                body.Speed = body.Speed - _minSpeed.Speed;
+            }
             foreach (var body in Bodys)
             {
                 body.GetCoordinate(Bodys, Dt, _wight, _height);
-                //body.Coordinate = body.Coordinate - lessSpeed.Coordinate;
             }
         }
 

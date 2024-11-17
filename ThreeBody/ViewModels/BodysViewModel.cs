@@ -75,9 +75,9 @@ namespace ThreeBody.DynamicViewModel
         {
             Engine.Bodys = new System.Collections.ObjectModel.ObservableCollection<MassiveBody>
             {
-                new MassiveBody(100000, new Vector(0.001, 0), new Vector(0, 0), new Vector(Wigth/2 - 30, Height/2 - 30)),
-                new MassiveBody(500000, new Vector(0, 0), new Vector(0, 0), new Vector(Wigth/2, Height/2)),
-                new MassiveBody(200000, new Vector(-0.002, 0), new Vector(0, 0), new Vector(Wigth/2 + 20, Height/2 + 20))
+                new MassiveBody(1000000, new Vector(0.0008, 0), new Vector(0, 0), new Vector(Wigth/2 - 30, Height/2 - 30)),
+                new MassiveBody(5000000, new Vector(0, 0), new Vector(0, 0), new Vector(Wigth/2, Height/2)),
+                new MassiveBody(2000000, new Vector(-0.001, 0), new Vector(0, 0), new Vector(Wigth/2 + 20, Height/2 + 20))
             };
             await RunObjects();
         }
@@ -94,12 +94,12 @@ namespace ThreeBody.DynamicViewModel
                     {
                         _dateTime = DateTime.Now;
                         Engine.Run();
-                        X1 = Engine.Bodys[0].Coordinate.X + Wigth / 2;
-                        X2 = Engine.Bodys[1].Coordinate.X + Wigth / 2;
-                        X3 = Engine.Bodys[2].Coordinate.X + Wigth / 2;
-                        Y1 = Engine.Bodys[0].Coordinate.Y + Height / 2;
-                        Y2 = Engine.Bodys[1].Coordinate.Y + Height / 2;
-                        Y3 = Engine.Bodys[2].Coordinate.Y + Height / 2;
+                        X1 = Engine.Bodys[0].Coordinate.X;
+                        X2 = Engine.Bodys[1].Coordinate.X;
+                        X3 = Engine.Bodys[2].Coordinate.X;
+                        Y1 = Engine.Bodys[0].Coordinate.Y;
+                        Y2 = Engine.Bodys[1].Coordinate.Y;
+                        Y3 = Engine.Bodys[2].Coordinate.Y;
                     }
                 }
             }).Start();
