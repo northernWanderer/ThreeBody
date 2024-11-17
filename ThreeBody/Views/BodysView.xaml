@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="ThreeBody.BodysView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ThreeBody"
+             xmlns:wpf ="http://prismlibrary.com/"
+             wpf:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="{Binding Height}" d:DesignWidth="{Binding Wigth}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Canvas Grid.Row="0" Background="Black">
+            <Button Width="10" Height="10"
+                Canvas.Bottom ="{Binding Y1}"
+                Canvas.Left ="{Binding X1}"
+                    Background="Yellow">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Width="10" Height="10"
+                Canvas.Bottom ="{Binding Y2}"
+                Canvas.Left ="{Binding X2}"
+                    Background="Yellow">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>       
+            </Button>
+            <Button Width="10" Height="10"
+                Canvas.Bottom ="{Binding Y3}"
+                Canvas.Left ="{Binding X3}"
+                    Background="Yellow">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+        </Canvas>
+        <StackPanel Grid.Row="1">
+            <Button Width="100" Height="{Binding StratButtonHeight}" Content="Start" Command="{Binding Command}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
