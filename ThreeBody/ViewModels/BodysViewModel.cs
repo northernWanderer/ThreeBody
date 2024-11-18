@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using ThreePhaseLibrary;
 
 namespace ThreeBody.DynamicViewModel
@@ -17,6 +18,9 @@ namespace ThreeBody.DynamicViewModel
         private double _x2;
         private DateTime _dateTime;
         private TimeSpan timeSpan;
+        SolidColorBrush _color1;
+        SolidColorBrush _color2;
+        SolidColorBrush _color3;
         private int _wigh;
         private int _height;
         private int _stratButtonHeight;
@@ -56,7 +60,12 @@ namespace ThreeBody.DynamicViewModel
             get => _y3;
             set => SetProperty(ref _y3, value);
         }
+        public SolidColorBrush Color1 { get => _color1; set => SetProperty(ref _color1 , value); }
+        public SolidColorBrush Color2 { get => _color2; set => SetProperty(ref _color2, value); }
+        public SolidColorBrush Color3 { get => _color3; set => SetProperty(ref _color3, value); }
+
         public ICommand Command { get; set; }
+        public ICommand ChangeColorCommand { get; set; }
 
         public BodysViewModel()
         {
@@ -66,9 +75,22 @@ namespace ThreeBody.DynamicViewModel
             Engine = new ThreeBodyEngine();
             Engine.Dt = 10;
             Command = new DelegateCommand(RunObjectsInThread);
+            ChangeColorCommand = new DelegateCommand(ChangeColor);
             timeSpan = new TimeSpan(0, 0, 0, 0, 1);
             Engine.Wight = Wigth;
             Engine.Height = Height - StratButtonHeight;
+
+            Color1 = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+            Color2 = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+            Color3 = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+        }
+
+        private void ChangeColor()
+        {
+            Random random = new Random();
+            Color1 = new SolidColorBrush(Color.FromRgb((byte)random.Next(0,256), (byte)random.Next(0, 256), (byte)random.Next(0, 256)));
+            Color2 = new SolidColorBrush(Color.FromRgb((byte)random.Next(0, 256), (byte)random.Next(0, 256), (byte)random.Next(0, 256)));
+            Color3 = new SolidColorBrush(Color.FromRgb((byte)random.Next(0, 256), (byte)random.Next(0, 256), (byte)random.Next(0, 256)));
         }
 
         private async void RunObjectsInThread()

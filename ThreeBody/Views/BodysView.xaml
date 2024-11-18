@@ -19,7 +19,8 @@
             <Button Width="10" Height="10"
                 Canvas.Bottom ="{Binding Y1}"
                 Canvas.Left ="{Binding X1}"
-                    Background="Yellow">
+                    Background="{Binding Color1}"
+                    Command="{Binding ChangeColorCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -29,7 +30,8 @@
             <Button Width="10" Height="10"
                 Canvas.Bottom ="{Binding Y2}"
                 Canvas.Left ="{Binding X2}"
-                    Background="Yellow">
+                    Background="{Binding Color2}"
+                    Command="{Binding ChangeColorCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -39,7 +41,9 @@
             <Button Width="10" Height="10"
                 Canvas.Bottom ="{Binding Y3}"
                 Canvas.Left ="{Binding X3}"
-                    Background="Yellow">
+                    Background="{Binding Color3}"
+                    Command="{Binding ChangeColorCommand}"
+                    >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
