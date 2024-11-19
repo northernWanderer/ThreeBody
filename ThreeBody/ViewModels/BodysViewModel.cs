@@ -98,7 +98,7 @@ namespace ThreeBody.DynamicViewModel
             Engine.Bodys = new System.Collections.ObjectModel.ObservableCollection<MassiveBody>
             {
                 new MassiveBody(1000000, new Vector(0.0008, 0), new Vector(0, 0), new Vector(Wigth/2 - 30, Height/2 - 30)),
-                new MassiveBody(5000000, new Vector(0, 0), new Vector(0, 0), new Vector(Wigth/2, Height/2)),
+                new MassiveBody(50000000, new Vector(0, 0), new Vector(0, 0), new Vector(Wigth/2, Height/2)),
                 new MassiveBody(2000000, new Vector(-0.001, 0), new Vector(0, 0), new Vector(Wigth/2 + 20, Height/2 + 20))
             };
             await RunObjects();
