@@ -14,6 +14,7 @@ namespace ThreePhaseLibrary
         private ObservableCollection<MassiveBody> bodys;
         private double dt;
         MassiveBody _maxMass;
+        private BodyVector _centerMass;
         private MassiveBody _minSpeed;
         private int _wight;
         private int _height;
@@ -28,13 +29,14 @@ namespace ThreePhaseLibrary
         public int Height { get => _height; set => SetProperty(ref _height, value); }
         public void Run()
         {
-            Vector vindowHalfSize = new Vector(Wight / 2, Height / 2);
-            _maxMass = Bodys.OrderByDescending(m => m.Mass).FirstOrDefault();
-            _minSpeed = Bodys.OrderBy(m => Vector.Module(m.Speed)).FirstOrDefault();
+            BodyVector vindowHalfSize = new BodyVector(Wight / 2, Height / 2);
+            //_maxMass = Bodys.OrderByDescending(m => m.Mass).FirstOrDefault();
+            _centerMass = CalculateCenterOfMass(Bodys);
+            _minSpeed = Bodys.OrderBy(m => BodyVector.Module(m.Speed)).FirstOrDefault();
             foreach (var body in Bodys)
             {
-                body.Coordinate = body.Coordinate - _maxMass.Coordinate + vindowHalfSize;
-                body.Speed = body.Speed - _minSpeed.Speed;
+                body.Coordinate = body.Coordinate - _centerMass + vindowHalfSize;
+                //body.Speed = body.Speed - _minSpeed.Speed;
             }
             foreach (var body in Bodys)
             {
@@ -42,5 +44,11 @@ namespace ThreePhaseLibrary
             }
         }
 
+        private BodyVector CalculateCenterOfMass(IEnumerable<MassiveBody> massiveBodies)
+        {
+            double xCenter = massiveBodies.Select(b => b.Mass*b.Coordinate).Sum(d => d.X) / massiveBodies.Sum(b => b.Mass);
+            double yCenter = massiveBodies.Select(b => b.Mass*b.Coordinate).Sum(d => d.Y) / massiveBodies.Sum(b => b.Mass);
+           return new BodyVector(xCenter, yCenter);
+        }
     }
 }

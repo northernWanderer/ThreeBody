@@ -98,7 +98,7 @@
     </Compile>
     <Compile Include="Core\MassiveBody.cs" />
     <Compile Include="Core\ThreeBodyEngine.cs" />
-    <Compile Include="Core\Vector.cs" />
+    <Compile Include="Core\BodyVector.cs" />
     <Compile Include="ViewModels\BodysViewModel.cs" />
     <Compile Include="Views\BodysView.xaml.cs">
       <DependentUpon>BodysView.xaml</DependentUpon>

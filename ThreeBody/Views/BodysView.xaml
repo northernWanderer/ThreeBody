@@ -14,31 +14,35 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-        <Canvas Grid.Row="0" Background="Black">
-            <Button Width="10" Height="10"
+        <Canvas Grid.Row="0" Grid.Column="0" Background="Black">
+            <Button Width="20" Height="20"
                 Canvas.Bottom ="{Binding Y1}"
                 Canvas.Left ="{Binding X1}"
                     Background="{Binding Color1}"
                     Command="{Binding ChangeColorCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
+                        <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Width="10" Height="10"
+            <Button Width="20" Height="20"
                 Canvas.Bottom ="{Binding Y2}"
                 Canvas.Left ="{Binding X2}"
                     Background="{Binding Color2}"
                     Command="{Binding ChangeColorCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
+                        <Setter Property="CornerRadius" Value="10"/>
                     </Style>
-                </Button.Resources>       
+                </Button.Resources>
             </Button>
-            <Button Width="10" Height="10"
+            <Button Width="20" Height="20"
                 Canvas.Bottom ="{Binding Y3}"
                 Canvas.Left ="{Binding X3}"
                     Background="{Binding Color3}"
@@ -46,14 +50,129 @@
                     >
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
+                        <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
 
+            <Button Width="20" Height="20"
+     Canvas.Top ="3"
+     Canvas.Right ="3"
+         Background="Red"
+         Command="{Binding StartCommand}"
+                    Visibility ="{Binding StartPanelVisibilityInverse}"
+         >
+            </Button>
+
         </Canvas>
-        <StackPanel Grid.Row="1">
-            <Button Width="100" Height="{Binding StratButtonHeight}" Content="Start" Command="{Binding Command}"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Visibility="{Binding StartPanelVisibility}">
+            <Slider Width="1000" Value="{Binding XSlider}" Minimum="0" Maximum="1000"/>
+            <Button Width="100" Height="{Binding StratButtonHeight}" Content="Start" Command="{Binding StartCommand}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox Content="First Body" IsChecked="{Binding FirstBodyChecked}"/>
+                <CheckBox Content="Second Body" IsChecked="{Binding SecondBodyChecked}"/>
+                <CheckBox Content="Thid Body" IsChecked="{Binding ThirdBodyChecked}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Масса первого тела, млн.тонн" />
+                <TextBox Width="100" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="FirstBodyMass">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Масса второго тела, млн.тонн" />
+                <TextBox Width="100" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="SecondBodyMass">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Масса третьего тела, млн.тонн" />
+                <TextBox Width="100" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="ThirdBodyMass">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                    
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Начальная скорость по оси X первого тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="FirstBodySpeedX">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Начальная скорость по оси X второго тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="SecondBodySpeedX">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Начальная скорость по оси X третьего тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="ThirdBodySpeedX">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Начальная скорость по оси Y первого тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="FirstBodySpeedY">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Начальная скорость по оси Y второго тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="SecondBodySpeedY">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Начальная скорость по оси Y третьего тела, км/с" />
+                <TextBox Width="50" Margin="5, 0">
+                    <TextBox.Text>
+                        <Binding Path="ThirdBodySpeedY">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding StartPanelVisibility}">
+            <Slider Orientation="Vertical" Height="300" Value="{Binding YSlider}" Minimum="0" Maximum="300"/>
         </StackPanel>
     </Grid>
 </UserControl>
